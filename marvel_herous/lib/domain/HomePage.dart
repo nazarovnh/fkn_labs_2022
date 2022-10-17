@@ -6,10 +6,9 @@ import 'MyPageController.dart';
 import 'TextFiled.dart';
 
 class HomePage extends StatelessWidget {
-    MyPageController myPageController =  MyPageController();
+    MyPageController myPageController =  const MyPageController();
 
   HomePage({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +17,9 @@ class HomePage extends StatelessWidget {
       ),
       scrollBehavior: MyCustomScrollBehavior(),
       home: Scaffold(
-        appBar: AppBar(
+        appBar: 
+        AppBar(
+            toolbarHeight: 100,
             title: Image.asset('assets/marvel.png'),
             backgroundColor: Colors.transparent,
             elevation: 0),
