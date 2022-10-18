@@ -13,19 +13,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black,
+        scaffoldBackgroundColor: Color.fromARGB(255, 41, 37, 37),
       ),
       scrollBehavior: MyCustomScrollBehavior(),
       home: Scaffold(
         appBar: AppBar(
-            toolbarHeight: 35,
+            titleSpacing: 35,
             centerTitle: true,
             title: Image.asset('assets/marvel.png', width: 400, height: 50),
             backgroundColor: Colors.transparent,
             elevation: 0),
         body: Column(children: <Widget>[
           const StringField(title: 'Choose your hero'),
-          const SizedBox(height: 10),
           Expanded(child: myPageController)
         ]),
       ),

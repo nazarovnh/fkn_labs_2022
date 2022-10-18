@@ -17,6 +17,6 @@ const Map<String, String> herousImage = {
 
 const Map<int, Color> herousColors = {
   0: Color.fromARGB(252, 126, 26, 24),
-  1: Colors.yellow,
+  1: Color.fromARGB(255, 202, 187, 49),
   2: Colors.blue
 };
