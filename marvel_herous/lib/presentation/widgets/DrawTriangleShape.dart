@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marvel_herous/constants/constants.dart';
 
 class TriangleShape extends CustomPainter {
   final Color backgroundColor;
@@ -17,8 +18,8 @@ class TriangleShape extends CustomPainter {
   Path createTriangle(double x, double y) {
     return Path()
       ..moveTo(0, y)
-      ..lineTo(x, y / 3)
-      ..lineTo(x, y);
+      ..lineTo(x, y / 2)
+      ..lineTo(x, y );
   }
 
   @override

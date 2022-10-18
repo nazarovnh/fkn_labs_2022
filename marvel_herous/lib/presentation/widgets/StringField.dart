@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class TextFiled extends StatelessWidget {
+class StringField extends StatelessWidget {
   final String title;
 
-  const TextFiled({super.key, required this.title});
+  const StringField({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

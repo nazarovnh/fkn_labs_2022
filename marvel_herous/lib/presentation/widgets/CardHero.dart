@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../config/constants.dart';
+import '../../constants/constants.dart';
+import 'StringField.dart';
 
 class CardHero extends StatelessWidget {
   final String title;
@@ -9,30 +10,25 @@ class CardHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Card(
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       child: Container(
-        width: 300,
+        width: WIDTH_CARD,
         height: HEIDHT_CARD,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
           image: DecorationImage(
             image: AssetImage(herousImage[title]!),
             fit: BoxFit.cover,
           ),
         ),
         child: Container(
-          alignment: Alignment.bottomRight,
-          padding: const EdgeInsets.all(12),
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+            alignment: Alignment.bottomLeft,
+            padding: const EdgeInsets.all(12),
+            child: StringField(title: title)),
       ),
-    ));
+    );
   }
 }

@@ -1,8 +1,8 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'CardHero.dart';
-import 'DrawTriangleShape.dart';
-import '../config/constants.dart';
+import '../widgets/CardHero.dart';
+import '../widgets/DrawTriangleShape.dart';
+import '../../constants/constants.dart';
 
 class MyPageController extends StatefulWidget {
   const MyPageController({super.key});
@@ -49,7 +49,7 @@ class MyPageControllerState extends State<MyPageController> {
       PageView(
         controller: pageController,
         children: widgets,
-      )
+      ),
     ]);
   }
 }
