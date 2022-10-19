@@ -27,7 +27,7 @@ class CardHero extends StatelessWidget {
         child: Container(
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.all(12),
-            child: StringField(title: title)),
+            child: StringField(title: title, fontSize: 30, color: Colors.white)),
       ),
     );
   }

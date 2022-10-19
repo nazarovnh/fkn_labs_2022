@@ -6,14 +6,12 @@ import '../../presentation/controllers/MyPageController.dart';
 import '../../presentation/widgets/StringField.dart';
 
 class HomePage extends StatelessWidget {
-  MyPageController myPageController = const MyPageController();
-
-  HomePage({super.key});
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 41, 37, 37),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 41, 37, 37),
       ),
       scrollBehavior: MyCustomScrollBehavior(),
       home: Scaffold(
@@ -23,9 +21,13 @@ class HomePage extends StatelessWidget {
             title: Image.asset('assets/marvel.png', width: 400, height: 50),
             backgroundColor: Colors.transparent,
             elevation: 0),
-        body: Column(children: <Widget>[
-          const StringField(title: 'Choose your hero'),
-          Expanded(child: myPageController)
+        body: Column(children: const <Widget>[
+          StringField(
+            title: 'Choose your hero',
+            fontSize: 30,
+            color: Colors.white,
+          ),
+          Expanded(child: MyPageController())
         ]),
       ),
     );
