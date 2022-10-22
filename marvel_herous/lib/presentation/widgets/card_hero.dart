@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
-import 'StringField.dart';
+import 'string_field.dart';
 
 class CardHero extends StatelessWidget {
   final String title;

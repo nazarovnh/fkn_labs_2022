@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_herous/constants/constants.dart';
 
-import '../../config/MyCustomScrollBehavior.dart';
-import '../../presentation/controllers/MyPageController.dart';
-import '../../presentation/widgets/StringField.dart';
+import '../../config/custom_scroll_behavior.dart';
+import '../../presentation/controllers/page_controller.dart';
+import '../../presentation/widgets/string_field.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             fontSize: 30,
             color: Colors.white,
           ),
-          Expanded(child: MyPageController())
+          Expanded(child: PageViewController())
         ]),
       ),
     );

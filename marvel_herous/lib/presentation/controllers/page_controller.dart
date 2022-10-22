@@ -1,19 +1,19 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import '../widgets/CardHero.dart';
-import '../widgets/DrawTriangleShape.dart';
+import '../widgets/card_hero.dart';
+import '../widgets/triangle_shape.dart';
 import '../../constants/constants.dart';
 
-class MyPageController extends StatefulWidget {
-  const MyPageController({super.key});
+class PageViewController extends StatefulWidget {
+  const PageViewController({super.key});
 
   @override
-  MyPageControllerState createState() {
-    return MyPageControllerState();
+  PageViewControllerState createState() {
+    return PageViewControllerState();
   }
 }
 
-class MyPageControllerState extends State<MyPageController> {
+class PageViewControllerState extends State<PageViewController> {
   late PageController pageController = PageController();
 
   int page = 0;

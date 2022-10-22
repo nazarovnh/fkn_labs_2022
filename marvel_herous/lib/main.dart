@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_herous/app/pages/HomePage.dart';
+import 'package:marvel_herous/app/pages/home_page.dart';
 
 void main() => runApp(const MyApp());
 
