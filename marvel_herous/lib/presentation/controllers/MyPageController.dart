@@ -35,20 +35,21 @@ class MyPageControllerState extends State<MyPageController> {
         pageController.hasClients ? herousColors[page] : herousColors[0];
 
     return Positioned.fill(
-      child: CustomPaint(painter: TriangleShape(backgroundColor: backgroundColor!)),
+      child: CustomPaint(
+          painter: TriangleShape(backgroundColor: backgroundColor!)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = listHerous
-        .map((name) => Center(child: CardHero(title: name)))
-        .toList();
     return Stack(children: [
       renderTrianlgeShape(),
-      PageView(
+      PageView.builder(
         controller: pageController,
-        children: widgets,
+        itemBuilder: (BuildContext context, int index) {
+          return Center(child: CardHero(title: listHerous[index]));
+        },
+        itemCount: listHerous.length,
       ),
     ]);
   }
