@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const double HEIDHT_CARD = 500;
-const double WIDTH_CARD = 300;
+const double heightCard = 500;
+const double widthCard = 300;
 
 const deadPool = 'Deadpool';
 const ironMan = 'Iron Man';

@@ -15,8 +15,8 @@ class CardHero extends StatelessWidget {
       elevation: 5,
       margin: const EdgeInsets.all(30),
       child: Container(
-        width: WIDTH_CARD,
-        height: HEIDHT_CARD,
+        width: widthCard,
+        height: heightCard,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           image: DecorationImage(
@@ -27,7 +27,8 @@ class CardHero extends StatelessWidget {
         child: Container(
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.all(12),
-            child: StringField(title: title, fontSize: 30, color: Colors.white)),
+            child:
+                StringField(title: title, fontSize: 30, color: Colors.white)),
       ),
     );
   }
