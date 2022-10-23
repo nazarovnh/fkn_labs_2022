@@ -5,8 +5,9 @@ import 'string_field.dart';
 
 class CardHero extends StatelessWidget {
   final String title;
+    final int index;
 
-  const CardHero({super.key, required this.title});
+  const CardHero({super.key, required this.title, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CardHero extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           image: DecorationImage(
-            image: AssetImage(herousImage[title]!),
+            image: NetworkImage(herousImage[index]!),
             fit: BoxFit.cover,
           ),
         ),

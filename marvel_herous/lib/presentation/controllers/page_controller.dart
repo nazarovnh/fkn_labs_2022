@@ -54,7 +54,7 @@ class PageViewControllerState extends State<PageViewController> {
     )),
             child: Hero(
                 tag: 'hero/$index',
-                child: Center(child: CardHero(title: listHerous[index]))),
+                child: Center(child: CardHero(title: listHerous[index], index: index))),
           );
         },
         itemCount: listHerous.length,

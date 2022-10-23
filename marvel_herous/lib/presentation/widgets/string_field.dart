@@ -13,6 +13,7 @@ class StringField extends StatelessWidget {
         style: TextStyle(
           color: color,
           fontSize: fontSize,
+          decoration: TextDecoration.none,
           fontWeight: FontWeight.bold,
           fontFamily: 'Roboto'
         )));
