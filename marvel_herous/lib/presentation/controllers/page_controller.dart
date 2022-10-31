@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import '../../app/pages/page_hero.dart';
 import '../widgets/card_hero.dart';
 import '../widgets/triangle_shape.dart';
 import '../../constants/constants.dart';
@@ -47,7 +48,14 @@ class PageViewControllerState extends State<PageViewController> {
       PageView.builder(
         controller: pageController,
         itemBuilder: (BuildContext context, int index) {
-          return Center(child: CardHero(title: listHerous[index]));
+          return InkWell(
+            onTap: () =>  Navigator.push(context, MaterialPageRoute(
+      builder: (context) => PageHero(index: index),
+    )),
+            child: Hero(
+                tag: 'hero/$index',
+                child: Center(child: CardHero(title: listHerous[index], index: index))),
+          );
         },
         itemCount: listHerous.length,
       ),

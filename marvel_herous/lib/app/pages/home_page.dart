@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 41, 37, 37),
       ),
-      scrollBehavior: MyCustomScrollBehavior(),
+      scrollBehavior: CustomScrollBehavior(),
       home: Scaffold(
         appBar: AppBar(
             titleSpacing: 35,
