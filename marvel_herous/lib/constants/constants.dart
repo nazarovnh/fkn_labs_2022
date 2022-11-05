@@ -50,3 +50,9 @@ const Map<int, String> herousDescription = {
   5: 'God of Thunder',
   6: 'Alright, I will do it myself.',
 };
+
+const heroesId = [1009610, 1009368, 1009664];
+
+// iron man - 1009368
+// thor - 1009664
+// spider - 1009610

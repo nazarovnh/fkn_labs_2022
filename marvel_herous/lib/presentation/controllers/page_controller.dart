@@ -1,5 +1,9 @@
 // ignore: file_names
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import '../../api/fetcher.dart';
 import '../../app/pages/page_hero.dart';
 import '../widgets/card_hero.dart';
 import '../widgets/triangle_shape.dart';
@@ -19,9 +23,24 @@ class PageViewControllerState extends State<PageViewController> {
 
   int page = 0;
 
+  void getHerous() async {
+    var response = await fetch(
+        'https://gateway.marvel.com:443/v1/public/characters?limit=2&');
+    var heroesId = response.data['data']['results'].map((value) => value['id']);
+    heroesId.forEach((id) async => {
+          await fetch('https://gateway.marvel.com/v1/public/characters/$id?')
+              .then((value) => {print(value),
+              print('\n')})
+        });
+    // add all id value
+    // after for each do request bu eacj character
+    // add all info in state
+  }
+
   @override
   void initState() {
     super.initState();
+    getHerous();
     pageController.addListener(onScroll);
   }
 
@@ -49,12 +68,15 @@ class PageViewControllerState extends State<PageViewController> {
         controller: pageController,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
-            onTap: () =>  Navigator.push(context, MaterialPageRoute(
-      builder: (context) => PageHero(index: index),
-    )),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PageHero(index: index),
+                )),
             child: Hero(
                 tag: 'hero/$index',
-                child: Center(child: CardHero(title: listHerous[index], index: index))),
+                child: Center(
+                    child: CardHero(title: listHerous[index], index: index))),
           );
         },
         itemCount: listHerous.length,
