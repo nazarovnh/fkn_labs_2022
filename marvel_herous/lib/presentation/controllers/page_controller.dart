@@ -1,9 +1,7 @@
-// ignore: file_names
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import '../../api/fetcher.dart';
+import 'package:marvel_herous/api/request/getHeroById.dart';
+import 'package:marvel_herous/api/request/getAllHeroes.dart';
+import '../../types/dto/heroInfo.dart';
 import '../../app/pages/page_hero.dart';
 import '../widgets/card_hero.dart';
 import '../widgets/triangle_shape.dart';
@@ -22,25 +20,21 @@ class PageViewControllerState extends State<PageViewController> {
   late PageController pageController = PageController();
 
   int page = 0;
+  List<HeroInfo> herousInfo = <HeroInfo>[];
 
-  void getHerous() async {
-    var response = await fetch(
-        'https://gateway.marvel.com:443/v1/public/characters?limit=2&');
-    var heroesId = response.data['data']['results'].map((value) => value['id']);
-    heroesId.forEach((id) async => {
-          await fetch('https://gateway.marvel.com/v1/public/characters/$id?')
-              .then((value) => {print(value),
-              print('\n')})
-        });
-    // add all id value
-    // after for each do request bu eacj character
-    // add all info in state
+  void getInfo() async {
+    var heroes = await getAllHeroes();
+    for (var id in heroes) {
+      await getHeroById(id).then((value) => setState(() {
+            herousInfo.add(value);
+          }));
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    getHerous();
+    getInfo();
     pageController.addListener(onScroll);
   }
 
@@ -76,10 +70,11 @@ class PageViewControllerState extends State<PageViewController> {
             child: Hero(
                 tag: 'hero/$index',
                 child: Center(
-                    child: CardHero(title: listHerous[index], index: index))),
+                    child:
+                        CardHero(title: herousInfo[index].name, index: index))),
           );
         },
-        itemCount: listHerous.length,
+        itemCount: herousInfo.length,
       ),
     ]);
   }
