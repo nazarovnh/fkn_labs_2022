@@ -4,6 +4,7 @@ import 'package:marvel_herous/api/request/getAllHeroes.dart';
 import '../../types/dto/heroInfo.dart';
 import '../../app/pages/page_hero.dart';
 import '../widgets/card_hero.dart';
+import '../widgets/show_dialog.dart';
 import '../widgets/triangle_shape.dart';
 import '../../constants/constants.dart';
 
@@ -23,11 +24,15 @@ class PageViewControllerState extends State<PageViewController> {
   List<HeroInfo> herousInfo = <HeroInfo>[];
 
   void getInfo() async {
+    try {
     var heroes = await getAllHeroes();
     for (var id in heroes) {
       await getHeroById(id).then((value) => setState(() {
             herousInfo.add(value);
           }));
+    }
+    } catch (e) {
+      showCustomDialog(context, 'Error', 'OPS');
     }
   }
 
@@ -65,13 +70,13 @@ class PageViewControllerState extends State<PageViewController> {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PageHero(index: index),
+                  builder: (context) => PageHero(heroInfo: herousInfo[index], index: index),
                 )),
             child: Hero(
                 tag: 'hero/$index',
                 child: Center(
                     child:
-                        CardHero(title: herousInfo[index].name, index: index))),
+                        CardHero(heroInfo: herousInfo[index], index: index))),
           );
         },
         itemCount: herousInfo.length,

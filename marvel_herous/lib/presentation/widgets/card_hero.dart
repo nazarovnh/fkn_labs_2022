@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
+import '../../types/dto/heroInfo.dart';
 import 'string_field.dart';
 
 class CardHero extends StatelessWidget {
-  final String title;
-    final int index;
+  final HeroInfo heroInfo;
+  final int index;
 
-  const CardHero({super.key, required this.title, required this.index});
+  const CardHero({super.key, required this.heroInfo, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CardHero extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           image: DecorationImage(
-            image: NetworkImage(herousImage[index]!),
+            image: NetworkImage(heroInfo.pathImage),
             fit: BoxFit.cover,
           ),
         ),
@@ -29,7 +30,7 @@ class CardHero extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.all(12),
             child:
-                StringField(title: title, fontSize: 30, color: Colors.white)),
+                StringField(title: heroInfo.name, fontSize: 30, color: Colors.white)),
       ),
     );
   }
