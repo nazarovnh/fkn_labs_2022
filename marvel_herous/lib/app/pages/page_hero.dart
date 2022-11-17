@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_herous/constants/constants.dart';
 
 import '../../presentation/widgets/string_field.dart';
 import '../../types/dto/heroInfo.dart';
