@@ -8,7 +8,7 @@ class PageHero extends StatelessWidget {
   final HeroInfo heroInfo;
     final int index;
 
-  const PageHero({super.key, required this.heroInfo, required this.index});
+  const  PageHero({super.key, required this.heroInfo, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class PageHero extends StatelessWidget {
         body: Hero(
             tag: 'hero/$index',
             child: Stack(children: [
-              Image.network(heroInfo.pathImage!,
+              Image.network(heroInfo.pathImage,
                   fit: BoxFit.cover, height: double.infinity, width: double.infinity,
               ),
               Container(
@@ -38,7 +38,7 @@ class PageHero extends StatelessWidget {
                             color: Colors.white),
                         const SizedBox(height: 15),
                         StringField(
-                            title: heroInfo.description,
+                            title: heroInfo.description.isNotEmpty ? heroInfo.description: heroInfo.name,
                             fontSize: 25,
                             color: const Color.fromARGB(255, 235, 235, 235)),
                         const SizedBox(height: 10)

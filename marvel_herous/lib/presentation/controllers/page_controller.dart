@@ -25,12 +25,12 @@ class PageViewControllerState extends State<PageViewController> {
 
   void getInfo() async {
     try {
-    var heroes = await getAllHeroes();
-    for (var id in heroes) {
-      await getHeroById(id).then((value) => setState(() {
-            herousInfo.add(value);
-          }));
-    }
+      var heroes = await getAllHeroes();
+      for (var id in heroes) {
+        await getHeroById(id).then((value) => setState(() {
+              herousInfo.add(value);
+            }));
+      }
     } catch (e) {
       showCustomDialog(context, 'Error', 'OPS');
     }
@@ -50,8 +50,9 @@ class PageViewControllerState extends State<PageViewController> {
   }
 
   Widget renderTrianlgeShape() {
-    var backgroundColor =
-        pageController.hasClients ? herousColors[page] : herousColors[0];
+    var backgroundColor = pageController.hasClients
+        ? herousColors[page % herousColors.length]
+        : herousColors[0];
 
     return Positioned.fill(
       child: CustomPaint(
@@ -70,7 +71,8 @@ class PageViewControllerState extends State<PageViewController> {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PageHero(heroInfo: herousInfo[index], index: index),
+                  builder: (context) =>
+                      PageHero(heroInfo: herousInfo[index], index: index),
                 )),
             child: Hero(
                 tag: 'hero/$index',
