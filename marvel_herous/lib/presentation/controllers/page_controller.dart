@@ -26,11 +26,13 @@ class PageViewControllerState extends State<PageViewController> {
   void getInfo() async {
     try {
       var heroes = await getAllHeroes();
+      List<HeroInfo> result = <HeroInfo>[];
       for (var id in heroes) {
-        await getHeroById(id).then((value) => setState(() {
-              herousInfo.add(value);
-            }));
+        result.add(await getHeroById(id));
       }
+      setState(() {
+        herousInfo = result;
+      });
     } catch (e) {
       showCustomDialog(context, 'Error', 'OPS');
     }
