@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_herous/constants/constants.dart';
 
 class TriangleShape extends CustomPainter {
   final Color backgroundColor;

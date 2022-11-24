@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_herous/constants/constants.dart';
 
 import '../../config/custom_scroll_behavior.dart';
 import '../../presentation/controllers/page_controller.dart';

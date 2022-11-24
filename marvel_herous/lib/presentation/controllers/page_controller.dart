@@ -1,7 +1,10 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:marvel_herous/api/request/getHeroById.dart';
+import 'package:marvel_herous/api/request/getAllHeroes.dart';
+import '../../types/dto/heroInfo.dart';
 import '../../app/pages/page_hero.dart';
 import '../widgets/card_hero.dart';
+import '../widgets/show_dialog.dart';
 import '../widgets/triangle_shape.dart';
 import '../../constants/constants.dart';
 
@@ -18,10 +21,27 @@ class PageViewControllerState extends State<PageViewController> {
   late PageController pageController = PageController();
 
   int page = 0;
+  List<HeroInfo> herousInfo = <HeroInfo>[];
+
+  void getInfo() async {
+    try {
+      var heroes = await getAllHeroes();
+      List<HeroInfo> result = <HeroInfo>[];
+      for (var id in heroes) {
+        result.add(await getHeroById(id));
+      }
+      setState(() {
+        herousInfo = result;
+      });
+    } catch (e) {
+      showCustomDialog(context, 'Error', 'OPS');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    getInfo();
     pageController.addListener(onScroll);
   }
 
@@ -32,8 +52,9 @@ class PageViewControllerState extends State<PageViewController> {
   }
 
   Widget renderTrianlgeShape() {
-    var backgroundColor =
-        pageController.hasClients ? herousColors[page] : herousColors[0];
+    var backgroundColor = pageController.hasClients
+        ? herousColors[page % herousColors.length]
+        : herousColors[0];
 
     return Positioned.fill(
       child: CustomPaint(
@@ -49,15 +70,20 @@ class PageViewControllerState extends State<PageViewController> {
         controller: pageController,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
-            onTap: () =>  Navigator.push(context, MaterialPageRoute(
-      builder: (context) => PageHero(index: index),
-    )),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PageHero(heroInfo: herousInfo[index], index: index),
+                )),
             child: Hero(
                 tag: 'hero/$index',
-                child: Center(child: CardHero(title: listHerous[index], index: index))),
+                child: Center(
+                    child:
+                        CardHero(heroInfo: herousInfo[index], index: index))),
           );
         },
-        itemCount: listHerous.length,
+        itemCount: herousInfo.length,
       ),
     ]);
   }

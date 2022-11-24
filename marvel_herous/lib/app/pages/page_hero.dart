@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_herous/constants/constants.dart';
 
 import '../../presentation/widgets/string_field.dart';
+import '../../types/dto/heroInfo.dart';
 
 class PageHero extends StatelessWidget {
-  const PageHero({super.key, required this.index});
+  final HeroInfo heroInfo;
+    final int index;
 
-  final int index;
+  const  PageHero({super.key, required this.heroInfo, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class PageHero extends StatelessWidget {
         body: Hero(
             tag: 'hero/$index',
             child: Stack(children: [
-              Image.network(herousImage[index]!,
+              Image.network(heroInfo.pathImage,
                   fit: BoxFit.cover, height: double.infinity, width: double.infinity,
               ),
               Container(
@@ -31,12 +32,12 @@ class PageHero extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         StringField(
-                            title: listHerous[index],
+                            title: heroInfo.name,
                             fontSize: 30,
                             color: Colors.white),
                         const SizedBox(height: 15),
                         StringField(
-                            title: herousDescription[index]!,
+                            title: heroInfo.description.isNotEmpty ? heroInfo.description: heroInfo.name,
                             fontSize: 25,
                             color: const Color.fromARGB(255, 235, 235, 235)),
                         const SizedBox(height: 10)
